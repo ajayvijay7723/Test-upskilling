@@ -6,4 +6,7 @@ playwright-report/
 playwright-report.zip
 .blob-report/
 .playwright/
+.vscode/
+**/AppData/
+**/Application Data/
 
