@@ -9,4 +9,4 @@ playwright-report.zip
 .vscode/
 **/AppData/
 **/Application Data/
-
+.node_modules/
