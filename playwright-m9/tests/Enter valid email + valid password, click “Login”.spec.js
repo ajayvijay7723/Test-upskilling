@@ -9,6 +9,7 @@ test('Dashboard loads after login', async ({ page }) => {
   await page.getByRole('button', { name: /^Login$/ }).click();
 
 
+  await page.waitForURL('**/dashboard**', { timeout: 15000 });
 
   // ASSERT: URL should contain dashboard
   await expect(page).toHaveURL(/dashboard/);
