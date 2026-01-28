@@ -5,6 +5,12 @@ export default defineConfig({
   testDir: './tests',
   testMatch: ['**/*.spec.js'],
 
+  // GLOBAL TIMEOUTS
+  timeout: 60_000,
+  expect: {
+    timeout: 10_000,
+  },
+
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
@@ -14,19 +20,21 @@ export default defineConfig({
 
   use: {
     trace: 'on-first-retry',
-    headless: false, // visible execution
+
+    // LOCAL: visible execution
+    // CI: headless
+    headless: !!process.env.CI,
+
     launchOptions: {
-      slowMo: 200,
+      slowMo: process.env.CI ? 0 : 200,
     },
   },
 
-  // ONLY CHROME (Chromium)
+  // ONLY CHROMIUM
   projects: [
     {
       name: 'chromium',
-      use: {
-        ...devices['Desktop Chrome'],
-      },
+      use: { ...devices['Desktop Chrome'] },
     },
   ],
 });
