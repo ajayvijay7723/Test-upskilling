@@ -19,16 +19,16 @@ export default defineConfig({
   reporter: [['html', { open: 'never', outputFolder: 'playwright-report' }]],
 
   use: {
-    trace: 'on-first-retry',
+  trace: 'on-first-retry',
 
-    // LOCAL: visible execution
-    // CI: headless
-    headless: !!process.env.CI,
+  // local: headed, CI: headless
+  headless: !!process.env.CI,
 
-    launchOptions: {
-      slowMo: process.env.CI ? 0 : 200,
-    },
+  launchOptions: {
+    slowMo: process.env.CI ? 0 : 200,
   },
+},
+
 
   // ONLY CHROMIUM
   projects: [
